@@ -1,30 +1,47 @@
 {% extends 'layout.html' %} {% block content %}
-<form action="/add.html" method="POST" class="box">
-  <div>
-    <label class="form-label">Email address</label>
-    <br />
-    <br />
-    <input
-      name="email"
-      type="email"
-      class="form-control"
-      id="email"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
-      placeholder="name@example.com"
-    />
-  </div>
-  <div>
-    <br />
-    <br />
-    <br />
-    <label class="form-label">Name</label>
-    <br />
-    <br />
-    <textarea class="form-control" name="name" id="name" rows="1"></textarea>
-  </div>
+<div>
+  {% if is_done %}
   <br />
-  <div>
-    <button type="submit" class="btn">Submit</button>
-  </div>
-</form>
+  <br />
+  <h1>brochacho's email is going straight to tajikistan</h1>
+  {% else %}
+  <form action="/add.html" method="POST" class="box">
+    {% if dupe %}
+    <div>
+      <p class="error_message">Email already exists</p>
+    </div>
+    {% endif %}
+    <div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <label class="form-label">Email address</label>
+      <br />
+      <br />
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        id="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+        placeholder="name@example.com"
+      />
+    </div>
+    <br />
+    <br />
+    <div>
+      <label class="form-label">Name</label>
+      <br />
+      <br />
+      <textarea class="form-control" name="name" id="name" rows="1"></textarea>
+      <br />
+      <br />
+    </div>
+    <div>
+      <button type="submit" class="btn">Submit</button>
+    </div>
+  </form>
+  {% endif %}
+</div>
 {% endblock %}

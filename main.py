@@ -18,8 +18,10 @@ def add():
     if request.method == "POST":
         email = request.form["email"]
         name = request.form["name"]
-        dbHandler.insertContact(email, name)
-        return render_template("/add.html", is_done=True)
+        if dbHandler.insertContact(email, name):
+            return render_template("/add.html", is_done=True)
+        else:
+            return render_template("/add.html", dupe=True)
     else:
         return render_template("/add.html")
 
